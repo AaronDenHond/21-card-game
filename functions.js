@@ -72,13 +72,13 @@ function checkWin(playerScore, cpuScore) {
     }
 
     else if (cpuScore == 21 || cpuScore > playerScore) {      //player loses
-        return false;                                
+        return false;
     }
-    else if (cpuScore < 17){
+    else if (cpuScore < 17) {
         return false;
     }
     else if (cpuScore == playerScore)
-    return false;
+        return false;
     else {
         return true;                       //player wins
     }
