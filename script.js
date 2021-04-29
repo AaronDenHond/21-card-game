@@ -1,15 +1,14 @@
 let superDeck = getDeck();  //declare variables only once, either globally or scoped
-let playerDeck = [];
-let playerTarget = document.getElementById("playerTarget");
-let cpuDeck = [];
-let cpuTarget = document.getElementById("cpuTarget");
+let playerHand = []; //playerHand is hand van speler, hier worden de kaarten van de speler opgeslagen
+let playerTarget = document.getElementById("playerTarget"); //playertarget is piece of HTML where all player cards are shown
+let cpuHand = [];
+let cpuTarget = document.getElementById("cpuTarget"); //cputarget is piece of HTML where all cpu cards are shown
 
 document.getElementById("draw").addEventListener("click", function () {
-    playerDeck.push(drawCard());
-    console.log(playerDeck);
-    console.log(superDeck);
-    showCards(playerDeck, playerTarget);
-    //for each in playerdeck in player target
+    playerHand.push(drawCard());
+
+    showCards(playerHand, playerTarget);
+    //for each in playerHand in player target
 });
 
 document.getElementById("playGame").addEventListener("click", function () {
@@ -19,34 +18,38 @@ document.getElementById("playGame").addEventListener("click", function () {
     //player input draw or hold
     //show player cards
     superDeck = getDeck();  //deck reset
-    playerDeck = [];  // array 
-    playerDeck.push(drawCard());
-    playerDeck.push(drawCard());
-    showCards(playerDeck, playerTarget);
+    playerHand = [];  // array 
+    playerHand.push(drawCard());
+    playerHand.push(drawCard());
+    showCards(playerHand, playerTarget);
 
 
 
-    cpuDeck = [];  // array 
-    cpuDeck.push(drawCard());
-    cpuDeck.push(drawCard());
-    showCards(cpuDeck, cpuTarget);
+    cpuHand = [];  // array 
+    cpuHand.push(drawCard());
+    cpuHand.push(drawCard());
+    showCards(cpuHand, cpuTarget);
 });
 
-document.getElementById("hold").addEventListener("click", function (){
-let cpuscore = calculateScore(cpuDeck);
-let playerscore = calculateScore(playerDeck);
-if (cpuscore > playerscore){
-    alert("Game lost")
-} else if (cpuscore == 21) {
-    alert("Game lost")
-}
-  cpuDeck.push(drawCard());
-  showCards(cpuDeck, cpuTarget);
-  if (cpuscore > playerscore){
-    alert("Game lost")
-} else if (cpuscore == 21) {
-    alert("Game lost")
-}
-});
+//hold
+document.getElementById("hold").addEventListener("click", function () {
+    let cpuScore = calculateScore(cpuHand);
+    let playerScore = calculateScore(playerHand);
+    if (checkWin(playerScore, cpuScore)) {
+        alert("Player won");
+    }
+    while (cpuScore < 17 && !checkWin/*check if cpu dead or player won*/(playerScore, cpuScore)) { //met Booleans kan je maar 1 ding true of false checken
+        cpuHand.push(drawCard());
+        cpuScore = calculateScore(cpuHand);
+        showCards(cpuHand, cpuTarget);
+    }
+    if (checkWin (playerScore, cpuScore)){
+        alert("Player won");
+        
+    }
+    else {
+        alert("CPU won");
+    }
 
+});
 //cpu slim laten redeneren, functies schrijven voor cpu
