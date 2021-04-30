@@ -1,10 +1,22 @@
-body {
-
-    background-color: rgb(203, 205, 231);
-
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-.container {
 
+body {
+    margin: 0;
+    background-color: rgb(203, 205, 231);
     
+}
+
+.playercards-in-hand {
+     height: 100%;
+     width: 25%;
+     border: 1px solid black;
+}
+
+.computercards-in-hand {
+    height: 100%;
+    width: 25%;
+    border: 1px solid black;
 }

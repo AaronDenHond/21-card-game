@@ -1,6 +1,6 @@
 //function 1 : making a carddeck
 function getDeck() {
-    let suits = ["spades", "diamonds", "clubs", "hearts"];   // for array deck
+    let suits = ["♠", "♦", "♣", "♥"];   // for array deck
     let values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]; // for array deck
     let newDeck = new Array();
     let realValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
